@@ -77,3 +77,42 @@ class Adress:
         self.entrance = input("Подъезд: ")
         self.floor = input("Этаж: ")
         self.apartment = input("Квартира: ")
+
+class Order:
+    def __init__(self,client):
+        self.name = client.name
+        self.list_order = client.list_order
+        self.deliv_order = "Собран"
+        
+    def __str__(self):
+        return f"{self.name}"
+        
+    def sum_order(self,menu):
+        s = 0
+        for o_item in self.list_order:
+            for m_item in menu:
+                if o_item == m_item.name:
+                    s += m_item.price
+        return f"Итоговая сумма заказа: {s} руб."
+        
+    def print_order(self,menu):
+        print(f"Заказ клиента {self.name}:\n")
+        for o_item in self.list_order:
+            for m_item in menu:
+                if o_item == m_item.name:
+                    print(f"{o_item} - {m_item.price} руб.")
+                    break
+            else:
+                print(f"\nБлюда {o_item} нет в меню!\n")
+        print(f"\n{self.sum_order(menu)}")
+
+    def delivery_order(self,adress):
+        print(f"Статус доставки заказа клиента {self.name} по адресу {adress}:\n")
+        time.sleep(3)
+        print(f"{self.deliv_order}")
+        self.deliv_order = "В пути"
+        time.sleep(3)
+        print(f"{self.deliv_order}")
+        self.deliv_order = "Доставлен"
+        time.sleep(3)
+        print(f"{self.deliv_order}")
