@@ -43,3 +43,18 @@ class Restaurant:
         self.status_order = "успешно оформлен"
         time.sleep(3)
         print(f"Клиент {client.name}, ваш заказ {self.status_order}")
+
+class Client:
+    def __init__(self):
+        self.name = ""
+        self.list_order = []
+
+    def input_name(self):
+        self.name = input("Клиент, введите своё имя: ")
+
+    def input_order(self):
+        order = ""
+        while order != ".":
+            order = input(f"Клиент {self.name} введите блюдо из меню: ")
+            self.list_order.append(order.capitalize())
+        del self.list_order[len(self.list_order)-1]
